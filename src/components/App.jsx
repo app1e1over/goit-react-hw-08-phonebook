@@ -8,8 +8,8 @@ export const App = () => {
   const [filter, setFilter] = useState('');
 
   function addToContacts(obj) {
-    let existing = contacts.filter(c => c.phone == obj.phone)[0];
-    if (existing != undefined) {
+    let existing = contacts.filter(c => c.phone === obj.phone)[0];
+    if (existing !== undefined) {
       alert(
         'this number is already in your phonebook by the name ' + existing.name
       );
@@ -22,7 +22,7 @@ export const App = () => {
   }
   function removeFromContacts(obj) {
     let copy = [...contacts];
-    copy = copy.filter(c => c.name != obj.name && c.phone != obj.phone);
+    copy = copy.filter(c => c.name !== obj.name && c.phone !== obj.phone);
     setContacts(copy);
   }
   return (
