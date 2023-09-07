@@ -13,6 +13,7 @@ function Input({ add }) {
 
 
     function makeObj() {
+      //very useful
         return {name, phone};
       }
   return (
