@@ -3,9 +3,7 @@ import { nanoid } from 'nanoid';
 import React, { Component } from 'react';
 
 class ContactList extends Component {
-  constructor(props){
-    super(props);
-  }
+
    isOkayObj(obj) {
     // for (const key in filter) {
     //     let val = ""+obj[key];
