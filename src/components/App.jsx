@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Input from './Input/Input';
-import Display from './Display/Display';
+import ContactForm  from './ContactForm/ContactForm';
+import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 
 export const App = () => {
@@ -28,15 +28,15 @@ export const App = () => {
   return (
     <>
       <h2>PhoneBook</h2>
-      <Input add={addToContacts}></Input>
+      <ContactForm add={addToContacts}/>
 
       <h2>Contacts</h2>
-      <Filter setFilter={setFilter}></Filter>
-      <Display
+      <Filter setFilter={setFilter}/>
+      <ContactList 
         filter={filter}
         contacts={contacts}
         remove={removeFromContacts}
-      ></Display>
+      />
     </>
   );
 };

@@ -1,19 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
+class Filter extends Component {
+constructor(props){
+  super(props);
+}
+  render() {
+    const {setFilter} = this.props;
+    return (
+      <div>
+        <label>
+          Find contacts by name<br></br>
+          <input onInput={e => setFilter(e.target.value)}></input>
+        </label>
+      </div>
+    );
+  }
+}
+
 
 Filter.propTypes = {
     setFilter: PropTypes.func,
 };
 
-function Filter({setFilter}) {
-  return (
-    <div>
-      <label>
-        Find contacts by name<br></br>
-        <input onInput={e => setFilter(e.target.value)}></input>
-      </label>
-    </div>
-  );
-}
 
 export default Filter;
