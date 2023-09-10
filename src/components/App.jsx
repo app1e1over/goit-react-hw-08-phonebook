@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import ContactForm  from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 
-export const App = () => {
-  const [contacts, setContacts] = useState([]);
-  const [filter, setFilter] = useState('');
 
-  function addToContacts(obj) {
+export class App extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      contacts:[],
+      filter:""
+    }
+  }
+  // const [contacts, setContacts] = useState([]);
+  // const [filter, setFilter] = useState('');
+
+  addToContacts=(obj)=> {
+    let {contacts} = this.state;
     let existing = contacts.filter(c => c.phone === obj.phone)[0];
     if (existing !== undefined) {
       alert(
@@ -18,25 +27,35 @@ export const App = () => {
     }
     let copy = [...contacts];
     copy.push(obj);
-    setContacts(copy);
+    this.setState({contacts:copy});
   }
-  function removeFromContacts(obj) {
-    let copy = [...contacts];
+  removeFromContacts=(obj) =>{
+    let copy = [...this.state.contacts];
     copy = copy.filter(c => c.name !== obj.name && c.phone !== obj.phone);
-    setContacts(copy);
+    this.setState({contacts:copy});
   }
-  return (
-    <>
-      <h2>PhoneBook</h2>
-      <ContactForm add={addToContacts}/>
+  isOkayObj(obj) {
+    const {filter}= this.state;
+    return obj.name.toLowerCase().includes(filter.toLowerCase());
+  }
+  setFilter=(val)=>{
+    this.setState({filter:val})
+  }
+  render(){
+    let filtered = this.state.contacts.filter(o=>this.isOkayObj(o));
+    return (
+      <>
+        <h2>PhoneBook</h2>
+        <ContactForm add={this.addToContacts}/>
+  
+        <h2>Contacts</h2>
+        <Filter setFilter={this.setFilter}/>
+        <ContactList 
+          contacts={filtered}
+          remove={this.removeFromContacts}
+        />
+      </>
+    );
+  }
 
-      <h2>Contacts</h2>
-      <Filter setFilter={setFilter}/>
-      <ContactList 
-        filter={filter}
-        contacts={contacts}
-        remove={removeFromContacts}
-      />
-    </>
-  );
 };

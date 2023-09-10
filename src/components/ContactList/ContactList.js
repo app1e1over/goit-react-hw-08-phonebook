@@ -1,26 +1,17 @@
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import React, { Component } from 'react';
+import "./style.css"
 
 class ContactList extends Component {
 
-   isOkayObj(obj) {
-    // for (const key in filter) {
-    //     let val = ""+obj[key];
-    //     let filt =""+filter[key];
-    //     if(val==undefined || !val.includes(filt)){
-    //         return false;
-    //     }
-    // }
-    const {filter}= this.props;
-    return obj.name.toLowerCase().includes(filter.toLowerCase());
-  }
+
 
    
   displayObj(c) {
     const {remove} = this.props;
     return (
-      <li key={nanoid()}>
+      <li key={nanoid()} className='contact'>
         {c.name}: {c.phone}
         <button onClick={()=>remove(c)}>delete</button>
       </li>
@@ -28,10 +19,10 @@ class ContactList extends Component {
   }
   render() {
     const {contacts} = this.props;
-    let disp = contacts.filter(e => this.isOkayObj(e)).map(c => this.displayObj(c));
+    let disp = contacts.map(c => this.displayObj(c));
     return (
       <>
-        <ul>{disp}</ul>
+        <ul className='contact-list'>{disp}</ul>
       </>
     );
   }

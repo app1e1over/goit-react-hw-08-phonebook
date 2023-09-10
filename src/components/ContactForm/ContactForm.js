@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import "./style.css";
 
 class ContactForm extends Component {
   constructor(props){
@@ -16,8 +17,9 @@ class ContactForm extends Component {
     }
   render() {
     return (
-      <div>
+      <form className='form-number' onSubmit={(e)=>{e.preventDefault(); this.props.add(this.makeObj()); this.setState({name:"", phone:""})}}>
         <input
+
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -35,16 +37,16 @@ class ContactForm extends Component {
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          onChange={e => {
+          onInput={e => {
             this.setState({phone:e.target.value})
           }}
           value={this.state.phone}
         />
         <br></br>
   
-        <button onClick={()=>{this.props.add(this.makeObj())}}>Add</button>
+        <button type='submit'>Add</button>
   
-      </div>
+      </form>
     );
   }
 }
