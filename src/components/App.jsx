@@ -8,7 +8,7 @@ export class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      contacts:[],
+      contacts:this.readLS(),
       filter:""
     }
   }
@@ -31,7 +31,7 @@ export class App extends Component {
   }
   removeFromContacts=(obj) =>{
     let copy = [...this.state.contacts];
-    copy = copy.filter(c => c.name !== obj.name && c.phone !== obj.phone);
+    copy = copy.filter(c => c.phone !== obj.phone);
     this.setState({contacts:copy});
   }
   isOkayObj(obj) {
@@ -40,6 +40,21 @@ export class App extends Component {
   }
   setFilter=(val)=>{
     this.setState({filter:val})
+  }
+  writeToLS(){
+    localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+  }
+  readLS(){
+    let res=JSON.parse(localStorage.getItem("contacts"));
+    if(res===null){
+      res=[];
+    }
+    return res;
+  }
+
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    this.writeToLS();
   }
   render(){
     let filtered = this.state.contacts.filter(o=>this.isOkayObj(o));
