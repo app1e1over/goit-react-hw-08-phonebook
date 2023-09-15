@@ -55,7 +55,7 @@ export class App extends Component {
 
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if(prevState.contacts!=this.state.contacts)
+    if(prevState.contacts!==this.state.contacts)
       this.writeToLS();
   }
   render(){
