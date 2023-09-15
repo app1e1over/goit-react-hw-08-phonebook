@@ -42,6 +42,7 @@ export class App extends Component {
     this.setState({filter:val})
   }
   writeToLS(){
+    console.log("writing");
     localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
   }
   readLS(){
@@ -54,7 +55,8 @@ export class App extends Component {
 
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    this.writeToLS();
+    if(prevState.contacts!=this.state.contacts)
+      this.writeToLS();
   }
   render(){
     let filtered = this.state.contacts.filter(o=>this.isOkayObj(o));
