@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
-import React, { Component } from 'react';
+import React from 'react';
 import "./style.css"
 
-class ContactList extends Component {
+const ContactList =(props)=> {
 
 
 
    
-  displayObj(c) {
-    const {remove} = this.props;
+  function displayObj(c) {
+    const {remove} = props;
     return (
       <li key={nanoid()} className='contact'>
         {c.name}: {c.phone}
@@ -17,16 +17,15 @@ class ContactList extends Component {
       </li>
     );
   }
-  render() {
-    const {contacts} = this.props;
-    let disp = contacts.map(c => this.displayObj(c));
+    const {contacts} = props;
+    let disp = contacts.map(c => displayObj(c));
     return (
       <>
         <ul className='contact-list'>{disp}</ul>
       </>
     );
   }
-}
+
 
 
 ContactList.propTypes = {

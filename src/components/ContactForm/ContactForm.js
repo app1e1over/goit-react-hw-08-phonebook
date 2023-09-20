@@ -1,23 +1,18 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, {useState} from 'react';
 import "./style.css";
 
-class ContactForm extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      name:"",
-      phone:""
-    }
-  }
-  makeObj() {
-    const {name, phone}=this.state;
-    //very useful
+const ContactForm = (props)=> {
+  const [name, setName] = useState("");
+  const [phone, setPhone]=useState("");
+
+  function makeObj() {
+    
       return {name, phone};
     }
-  render() {
+ 
     return (
-      <form className='form-number' onSubmit={(e)=>{e.preventDefault(); this.props.add(this.makeObj()); this.setState({name:"", phone:""})}}>
+      <form className='form-number' onSubmit={(e)=>{e.preventDefault(); props.add(makeObj()); setName(""); setPhone("");}}>
         <input
 
           type="text"
@@ -26,9 +21,9 @@ class ContactForm extends Component {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
           onInput={e => {
-            this.setState({name:e.target.value})
+            setName(e.target.value)
           }}
-          value={this.state.name}
+          value={name}
         />
         <br></br>
         <input
@@ -38,9 +33,9 @@ class ContactForm extends Component {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
           onInput={e => {
-            this.setState({phone:e.target.value})
+            setPhone(e.target.value)
           }}
-          value={this.state.phone}
+          value={phone}
         />
         <br></br>
   
@@ -49,7 +44,7 @@ class ContactForm extends Component {
       </form>
     );
   }
-}
+
 
 
 ContactForm.propTypes = {

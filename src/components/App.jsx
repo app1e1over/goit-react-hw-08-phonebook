@@ -1,22 +1,17 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import ContactForm  from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 
 
-export class App extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      contacts:this.readLS(),
-      filter:""
-    }
-  }
+export const App =()=> {
+  const [contacts, setContacts] = useState(readLS());
+  const [filter, setFilter]=useState("");
+  const prevContacts = useRef(readLS());
   // const [contacts, setContacts] = useState([]);
   // const [filter, setFilter] = useState('');
 
-  addToContacts=(obj)=> {
-    let {contacts} = this.state;
+  const addToContacts=(obj)=> {
     let existing = contacts.filter(c => c.phone === obj.phone)[0];
     if (existing !== undefined) {
       alert(
@@ -27,25 +22,21 @@ export class App extends Component {
     }
     let copy = [...contacts];
     copy.push(obj);
-    this.setState({contacts:copy});
+    setContacts(copy);
   }
-  removeFromContacts=(obj) =>{
-    let copy = [...this.state.contacts];
+  const removeFromContacts=(obj) =>{
+    let copy = [...contacts];
     copy = copy.filter(c => c.phone !== obj.phone);
-    this.setState({contacts:copy});
+    setContacts(copy);
   }
-  isOkayObj(obj) {
-    const {filter}= this.state;
+  function isOkayObj(obj) {
     return obj.name.toLowerCase().includes(filter.toLowerCase());
   }
-  setFilter=(val)=>{
-    this.setState({filter:val})
-  }
-  writeToLS(){
+  function writeToLS(){
     console.log("writing");
-    localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+    localStorage.setItem("contacts", JSON.stringify(contacts));
   }
-  readLS(){
+  function readLS(){
     let res=JSON.parse(localStorage.getItem("contacts"));
     if(res===null){
       res=[];
@@ -53,26 +44,28 @@ export class App extends Component {
     return res;
   }
 
+  useEffect(()=>{
+    if(prevContacts.current!==contacts){
+      writeToLS();
+      prevContacts.current=contacts;
+    }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if(prevState.contacts!==this.state.contacts)
-      this.writeToLS();
-  }
-  render(){
-    let filtered = this.state.contacts.filter(o=>this.isOkayObj(o));
+  })
+
+    let filtered =contacts.filter(o=>isOkayObj(o));
     return (
       <>
         <h2>PhoneBook</h2>
-        <ContactForm add={this.addToContacts}/>
+        <ContactForm add={addToContacts}/>
   
         <h2>Contacts</h2>
-        <Filter setFilter={this.setFilter}/>
+        <Filter setFilter={setFilter}/>
         <ContactList 
           contacts={filtered}
-          remove={this.removeFromContacts}
+          remove={removeFromContacts}
         />
       </>
     );
-  }
+  
 
 };

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class Filter extends Component {
+const Filter =(props)=> {
 
-  render() {
-    const {setFilter} = this.props;
+
+    const {setFilter} = props;
     return (
       <div>
         <label>
@@ -13,7 +13,7 @@ class Filter extends Component {
         </label>
       </div>
     );
-  }
+  
 }
 
 
