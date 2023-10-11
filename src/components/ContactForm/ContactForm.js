@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { addContact } from 'redux/operations';
 import './style.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { add } from 'redux/contactsSlice';
 
 const ContactForm = props => {
   const [name, setName] = useState('');
@@ -17,7 +17,7 @@ const ContactForm = props => {
     if(existing!==undefined){
       alert("That number is already saved as "+existing.name);
     }else{
-      dispatch(add({name, phone}))
+      dispatch(addContact({name, phone}))
 
     }
 
