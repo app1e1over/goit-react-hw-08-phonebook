@@ -1,8 +1,7 @@
-import { fetchUser, logout } from 'js/Fetcher';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import "./style.css"
-import { getToken, getUser } from 'redux/selectors';
+import { getUser } from 'redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from 'redux/operations';
 import Loader from 'components/Loader/Loader';
@@ -17,7 +16,7 @@ function UserMenu(props) {
   if(isLoading){
     return <Loader/>
   }
-  if(error || user == undefined){
+  if(error || user === undefined){
     return <div className='user-container'>There seems to be an <span className='name-container'>error</span> please <NavLink to={"/login"}>Log in</NavLink> again</div>
   }
   return (

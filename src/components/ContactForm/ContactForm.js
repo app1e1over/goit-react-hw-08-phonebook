@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getUser } from 'redux/selectors';
 
-const ContactForm = props => {
+const ContactForm = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const ContactForm = props => {
      setName('');
      setPhone('');
   }
-  if(obj==undefined || obj.token==undefined){
+  if(obj.token===undefined){
     return <div className='user-container'>Please <NavLink to={"/login"}>Log in</NavLink> firts</div>
 
   }
