@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { addContact } from 'redux/operations';
 import './style.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { getUser } from 'redux/selectors';
 
 const ContactForm = props => {
   const [name, setName] = useState('');
@@ -10,6 +12,7 @@ const ContactForm = props => {
   const dispatch = useDispatch();
 
   const {contacts} = useSelector(state=>state.contacts);
+  const { user:obj} = useSelector(getUser);
   function submit(e) {
     e.preventDefault();
     //props.add(makeObj());
@@ -17,14 +20,17 @@ const ContactForm = props => {
     if(existing!==undefined){
       alert("That number is already saved as "+existing.name);
     }else{
-      dispatch(addContact({name, phone}))
+      dispatch(addContact({name, number:phone, token:obj.token}))
 
     }
 
      setName('');
      setPhone('');
   }
+  if(obj==undefined || obj.token==undefined){
+    return <div className='user-container'>Please <NavLink to={"/login"}>Log in</NavLink> firts</div>
 
+  }
 
   return (
     <form className="form-number" onSubmit={submit}>

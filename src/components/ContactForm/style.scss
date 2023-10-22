@@ -2,24 +2,24 @@
     text-align: center;
     & input{
         margin-top: 10px;
-        border: 1px solid #9bb537;
+        border: 1px solid var(--secondary);
         border-radius: 10px;
         transition: all 200ms ease-in;
-        width:30vw
+        width:30vw;
     }
     & input:hover, & input:focus{
         margin-top: 10px;
-        outline: 1px solid #9bb537;
+        outline: 3px solid var(--accent);
         border-radius: 10px;
         width:31vw;
-        
+        color: var(--secondary);
     }
     & [type=submit]{
         margin-top: 20px;
         width:30vw;
         height: 30px;
-        background-color: #9bb537;
-        color: #f8f8f8;
+        background-color: var(--secondary);
+        color: var(--primary);
         border-radius: 20px;
         border: none;
         transition: all 200ms ease-in;
@@ -30,10 +30,10 @@
         width:31vw;
         height: 35px;
         font-size: large;
-        background-color: #f8f8f8;
-        color: #9bb537;
+        background-color: var(--background);
+        color: var(--secondary);
         border-radius: 20px;
-        border: 1px solid #9bb537;
+        border: 1px solid var(--secondary);
         margin-bottom: 0px;
     }
 }

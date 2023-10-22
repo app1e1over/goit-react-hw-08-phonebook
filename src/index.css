@@ -1,4 +1,10 @@
-@import-normalize; /* bring in normalize.css styles */
+
+:root {
+  --primary: #ffffff;
+  --secondary: #3498db;
+  --accent: #2ecc71;
+  --background: #f2f2f2;
+}
 
 body {
   margin: 0;
@@ -7,6 +13,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
 }
 
 code {

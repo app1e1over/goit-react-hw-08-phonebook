@@ -1,0 +1,21 @@
+form{
+    text-align: center;
+}
+form div{
+    color: var(--secondary);
+
+    padding: 3px;
+    margin-bottom: 10px;
+}
+form label{
+    border: 1px solid var(--secondary);
+}
+form input{
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+}
+form input:focus{
+    background-color: var(--background);
+    outline: none;
+}

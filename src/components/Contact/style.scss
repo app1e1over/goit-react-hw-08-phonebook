@@ -1,0 +1,65 @@
+.contact {
+  border: 3px solid var(--primary);
+  background-color: var(--secondary);
+
+  color: var(--primary);
+  padding: 3px;
+  padding-top: 20px;
+
+  border-radius: 10px;
+  text-align: center;
+  transition: all 200ms ease-in;
+  height: 100px;
+  width: 200px;
+
+  & button {
+    display: block;
+    text-align: center;
+    margin: auto;
+    color: inherit;
+    background-color: transparent;
+    outline: none;
+    width: 60px;
+    transition: inherit;
+    margin-top: 20px;
+    &:hover {
+      color: var(--accent);
+      background-color: var(--secondary);
+      padding: 5px;
+      width: 70px;
+      border-radius: 10px;
+    }
+  }
+
+  &:has(form) {
+    padding: 1px;
+    & label {
+      display: flex;
+      max-width: 200px;
+      & input {
+        max-width: 150px;
+        background-color: transparent;
+      }
+    }
+    & div {
+      display: flex;
+      color: inherit
+    }
+  }
+  &:hover {
+    padding: 9px;
+    color: var(--secondary);
+    background-color: var(--primary);
+    border: 1px solid var(--accent);
+    & span {
+      color: var(--accent);
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    & button {
+      border: 1px solid var(--secondary);
+    }
+  }
+}

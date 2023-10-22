@@ -1,1 +1,1 @@
-.contact-list{display:flex;flex-wrap:wrap;gap:30px}.contact{display:flex;border:3px solid #9bb537;padding:3px;border-radius:10px;transition:all 200ms ease-in;height:100px;width:100px;flex-wrap:wrap}.contact button{margin-left:20px;color:#9bb537;border-color:#9bb537;background-color:rgba(0,0,0,0);outline:none;width:60px;transition:inherit}.contact button:hover{margin-left:16px;color:#9bb537;background-color:rgba(0,0,0,0);width:64px;outline:none}.contact:hover{padding:9px;color:#9bb537}
+.contact-list{display:flex;flex-wrap:wrap;gap:30px;list-style:none}
