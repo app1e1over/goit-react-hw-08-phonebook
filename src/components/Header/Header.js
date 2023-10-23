@@ -10,8 +10,9 @@ function Header(props) {
   const { user: obj } = useSelector(getUser);
   const { user } = obj;
   const dispatch = useDispatch();
-  if (user === undefined || user.name === undefined) {
-    let saved = JSON.parse(localStorage.getItem('user'));
+  const savedJson = localStorage.getItem('user');
+  if ((user === undefined || user.name === undefined) && savedJson!==null) {
+    let saved = JSON.parse(savedJson);
     if (saved.user !== undefined) {
       dispatch(set(saved));
     }
