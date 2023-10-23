@@ -16,13 +16,13 @@ function UserMenu(props) {
   if(isLoading){
     return <Loader/>
   }
-  if(error || user === undefined){
+  if(error){
     return <div className='user-container'>There seems to be an <span className='name-container'>error</span> please <NavLink to={"/login"}>Log in</NavLink> again</div>
   }
   return (
     <div className='user-container'>
-      <p className='name-container'>{user.name ?? "You are logged out"}</p>
-      {user.name ? <button onClick={out}>Logout</button> : <div><NavLink to={"/login"}>Log in</NavLink> or <NavLink to={"/register"}>Sign up</NavLink> to begin using website</div>}
+      <p className='name-container'>{(user && user.name) ? user.name : "You are logged out"}</p>
+      {(user && user.name) ? <button onClick={out}>Logout</button> : <div><NavLink to={"/login"}>Log in</NavLink> or <NavLink to={"/register"}>Sign up</NavLink> to begin using website</div>}
     </div>
   );
 }

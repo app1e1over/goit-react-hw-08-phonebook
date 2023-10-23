@@ -9,7 +9,6 @@ export const register = ({ email, password, name }) => {
 };
 
 export const login = ({ email, password }) => {
-  console.log(email);
   return axios.post('users/login', { email, password });
 };
 
@@ -50,7 +49,6 @@ export const postContact = ({ token, number, name }) => {
 };
 
 export const getContacts = token => {
-  console.log(token);
   return axios.get(
     '/contacts',
     {

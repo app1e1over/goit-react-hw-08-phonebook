@@ -5,6 +5,8 @@ import Login from 'pages/Login';
 import Register from 'pages/Register';
 import Me from 'pages/Me';
 import Layout from './Layout/Layout';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+
 
 export const App = () => {
   return (
@@ -12,7 +14,7 @@ export const App = () => {
       <BrowserRouter basename='goit-react-hw-08-phonebook'>
         <Routes>
         <Route path='/' element={<Layout></Layout>}>
-          <Route path="/" element={<Home />}></Route>
+          <Route path="/" element={ <PrivateRoute path="/" component={<Home />}/>}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/me" element={<Me />}></Route>

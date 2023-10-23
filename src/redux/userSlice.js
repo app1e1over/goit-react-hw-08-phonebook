@@ -5,11 +5,14 @@ const userSlice = createSlice({
   name: 'user',
   initialState: {
     user: {},
-    token: '',
     isLoading: false,
     error: null,
   },
-
+  reducers:{
+    set(state, action){
+      state.user = action.payload;
+    }
+  },
   extraReducers: {
     [fetchUser.pending](state, action) {
       state.isLoading = true;
@@ -31,6 +34,7 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.user = {user:{}, token:""};
       state.error = null;
+      localStorage.setItem('user', JSON.stringify({}))
     },
     [logoutUser.rejected](state, action) {
       state.isLoading = false;
@@ -44,6 +48,7 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.user = action.payload;
       state.error = null;
+      localStorage.setItem("user", JSON.stringify(action.payload))
     },
     [loginUser.rejected](state, action) {
       state.isLoading = false;
@@ -55,9 +60,10 @@ const userSlice = createSlice({
     },
     [registerUser.fulfilled](state, action) {
       state.isLoading = false;
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+      state.user = action.payload;
       state.error = null;
+      localStorage.setItem("user", JSON.stringify(action.payload))
+
     },
     [registerUser.rejected](state, action) {
       state.isLoading = false;
@@ -66,3 +72,4 @@ const userSlice = createSlice({
   },
 });
 export const userReducer = userSlice.reducer;
+export const {set} = userSlice.actions;
